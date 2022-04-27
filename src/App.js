@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Grid } from "@mui/material";
+import SearchField from "./components/SearchField";
+import VideoDescription from "./components/VideoDescription";
+
+/*import {SearchMenu, VideoRecord, VideDescription} from './components' ;*/
+
+//import SearchField from "./components/SearchField";
+//import VideoDescription from "./components/VideoDescription";
+//import VideoRecord from "./components/VideoRecord";
+//import VideoDescription from "./components/VideoDescription";
+
+class App extends React.Component {
+  state = {
+    video: [],
+    selectedVideo: null,
+  };
+  render() {
+    const { selectedVideo } = this.state;
+    return (
+      <Grid justify="center" container spacing={16}>
+        <Grid item xs={12}>
+          <Grid container spacing={16}>
+            <Grid item xs={12}>
+              <SearchField onFromSubmit={this.handleSubmit}></SearchField>
+            </Grid>
+            <Grid item xs={8}>
+              <VideoDescription video={selectedVideo}></VideoDescription>
+            </Grid>
+            <Grid item xs={4}></Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    );
+  }
 }
 
 export default App;
